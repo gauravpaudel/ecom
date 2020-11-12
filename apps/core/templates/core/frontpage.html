@@ -1,0 +1,89 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+  {% for product in products %}
+
+    <div class="col-lg-3 col-md-6 mb-4">
+
+      <!--Card-->
+      <div class="card">
+
+        <!--Card image-->
+        <div class="view overlay">
+          <img src="{{ product.image.url }}" class="card-img-top"
+            alt="">
+          <a href="{% url 'product-detail' product.category.slug product.slug %}">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!--Card image-->
+
+        <!--Card content-->
+        <div class="card-body text-center">
+          <!--Category & Title-->
+          <a href="{% url 'product-detail' product.category.slug product.slug %}" class="grey-text">
+            <h5>{{product.category}}</h5>
+          </a>
+          <h5>
+            <strong>
+              <a href="{% url 'product-detail' product.category.slug product.slug %}" class="dark-grey-text"> {{product.title}}
+                <span class="badge badge-pill danger-color">{{product.tag}}</span>
+              </a>
+            </strong>
+          </h5>
+
+          <h4 class="font-weight-bold blue-text">
+            <strong>RS. {{product.price}}</strong>
+          </h4>
+
+        </div>
+        <!--Card content-->
+
+      </div>
+      <!--Card-->
+
+    </div>
+  {% endfor %}
+<!-- closing tags for base.html -->
+  </div>
+</section>
+
+  <!-- Django Pagination -->
+
+  <nav class="d-flex justify-content-center wow fadeIn">
+    <ul class="pagination pg-blue">
+
+      {% if page_obj.has_previous%}
+
+        <!--Arrow left-->
+        <li class="page-item">
+          <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      
+      {% endif %}
+
+      <li class="page-item active">
+        <a class="page-link" href="#">{{page_obj.number}}
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+      {% if page_obj.has_next %}
+
+      <li class="page-item">
+        <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+      
+      {% endif %}
+
+    </ul>
+  </nav>
+  <!--Pagination-->
+
+{% endblock %}
