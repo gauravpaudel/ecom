@@ -342,7 +342,7 @@
       mutations: {
         increment(state,quantity){
           state.numItems += quantity;
-        } 
+        }, 
       }
 
 
@@ -353,12 +353,14 @@
       el: '#navbarapp',
       delimiters: ['[[',']]'],
       store: store,
+
       computed: {
-        numItems: function(){
-          console.log('test')
+        numItems: function () {
+          console.log('test');
           return store.state.numItems
         },
       }
+
 
     });
 

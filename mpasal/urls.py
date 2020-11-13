@@ -16,13 +16,15 @@ urlpatterns = [
     
     path('accounts/', include('allauth.urls')),
 
+    #api cart
+
+    path('api/add_to_cart/',api_add_to_cart,name='api_add_to_cart'),
+
     #path('test/',testy,name='test')
 
     path('<slug:category_slug>/<slug:slug>/',productDetailView,name='product-detail'),
 
-    #api cart
-
-    path('api/add_to_cart/',api_add_to_cart,name='api_add_to_cart'),
+    
 
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
