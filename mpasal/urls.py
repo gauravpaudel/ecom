@@ -4,6 +4,7 @@ from apps.core.views import ProductListView
 from apps.store.views import productDetailView
 from django.conf import settings
 from django.conf.urls.static import static
+from apps.store.api import api_add_to_cart
 
 
 urlpatterns = [
@@ -18,5 +19,11 @@ urlpatterns = [
     #path('test/',testy,name='test')
 
     path('<slug:category_slug>/<slug:slug>/',productDetailView,name='product-detail'),
+
+    #api cart
+
+    path('api/add_to_cart/',api_add_to_cart,name='api_add_to_cart'),
+
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

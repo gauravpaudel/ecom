@@ -33,6 +33,9 @@ AUTHENTICATION_BACKENDS = [
     
 ]
 
+#Session for cart function for guest user 
+SESSION_COOKIE_AGE = 86400
+CART_SESSION_ID = 'cart'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     # apps
     'apps.core',
     'apps.store',
+    'apps.cart',
 
     # all auth
     'django.contrib.sites',
@@ -78,6 +82,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'apps.store.context_processors.menu_categories',
+                'apps.cart.context_processors.cart',
             ],
         },
     },
