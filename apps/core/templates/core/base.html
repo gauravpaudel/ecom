@@ -84,8 +84,8 @@
             
             <li class="nav-item">
               <div id="navbarapp"> 
-                <a class="nav-link waves-effect">
-                <span class="badge red z-depth-1 mr-1"> [[numItems]] </span>
+                <a class="nav-link waves-effect" href="{% url 'cart_detail' %}">
+                <span class="badge red z-depth-1 mr-1"> [[ numItems ]] </span>
                 <i class="fas fa-shopping-cart"></i>
                 <span class="clearfix d-none d-sm-inline-block"> Cart </span>
                 </a>
@@ -336,7 +336,8 @@
 
     var store = new Vuex.Store({
       state: {
-        numItems: {{ cart.get_total_length }}
+        numItems: {{ cart.get_total_length }},
+        totalCost: {{ cart.get_total_cost }}
       },
 
       mutations: {
@@ -359,6 +360,11 @@
           console.log('test');
           return store.state.numItems
         },
+
+        totalCost : function(){
+          return store.state.totalCost
+        },
+
       }
 
 

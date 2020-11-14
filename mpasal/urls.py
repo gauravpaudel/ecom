@@ -5,6 +5,7 @@ from apps.store.views import productDetailView
 from django.conf import settings
 from django.conf.urls.static import static
 from apps.store.api import api_add_to_cart
+from apps.cart.views import cart_detail
 
 
 urlpatterns = [
@@ -16,6 +17,9 @@ urlpatterns = [
     
     path('accounts/', include('allauth.urls')),
 
+    path('cart/',cart_detail,name='cart_detail'),
+
+
     #api cart
 
     path('api/add_to_cart/',api_add_to_cart,name='api_add_to_cart'),
@@ -23,6 +27,7 @@ urlpatterns = [
     #path('test/',testy,name='test')
 
     path('<slug:category_slug>/<slug:slug>/',productDetailView,name='product-detail'),
+
 
     
 
