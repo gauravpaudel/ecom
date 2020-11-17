@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.store',
     'apps.cart',
+    'apps.order',
 
     # all auth
     'django.contrib.sites',
