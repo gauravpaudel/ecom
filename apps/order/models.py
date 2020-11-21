@@ -30,8 +30,11 @@ class OrderItem(models.Model):
     def total_price(self):
         return self.price * self.quantity
 
+    @property
     def date(self):
         return self.order.created_at
+
+    
 
     def __str__(self):
         return '%s' % self.id
