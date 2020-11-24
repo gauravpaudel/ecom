@@ -5,7 +5,9 @@ class Category(models.Model):
     title = models.CharField(max_length = 255)
     slug = models.SlugField(max_length = 255)
     ordering = models.IntegerField(default = 0)
-
+    image =  models.ImageField(upload_to='uploads/category',null = True, blank = True)
+    is_featured = models.BooleanField(default = False)
+    
     class Meta:
         ordering = ('ordering',)
         verbose_name_plural = 'categories'
