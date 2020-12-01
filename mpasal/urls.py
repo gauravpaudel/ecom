@@ -5,7 +5,7 @@ from apps.store.views import productDetailView, categoryDetail
 from django.conf import settings
 from django.conf.urls.static import static
 from apps.store.api import api_add_to_cart, api_checkout, api_remove_from_cart
-from apps.cart.views import cart_detail , tests
+from apps.cart.views import cart_detail
 
 
 admin.site.site_header = 'mPasal'
@@ -15,7 +15,7 @@ admin.site.index_title =  'Welcome to the future'
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('test/',tests,name='test'),
+    #path('test/',tests,name='test'),
 
     path('',ProductListView.as_view(),name='frontpage'),
 

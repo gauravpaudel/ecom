@@ -20,5 +20,5 @@ def cart_detail(request):
     return render(request,'cart/cart1.html',context)
 
 
-def tests(request):
-    return render(request,'cart/cart1.html')
+#def tests(request):
+ #   return render(request,'cart/cart1.html')

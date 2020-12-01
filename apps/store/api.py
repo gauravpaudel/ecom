@@ -46,8 +46,6 @@ def api_checkout(request):
     address = data['address']
     zipcode = data['zipcode']
     place = data['place']
-
-
     order_id = checkout(request, first_name, last_name, email, address, place, zipcode)
 
     paid = True
@@ -62,8 +60,6 @@ def api_checkout(request):
     
     return JsonResponse(jsonresponse)
 
-
-
 def api_remove_from_cart(request):
 
     cart = Cart(request)
@@ -77,4 +73,3 @@ def api_remove_from_cart(request):
     cart.remove(product_id)
    
     return JsonResponse(jsonresponse)
-

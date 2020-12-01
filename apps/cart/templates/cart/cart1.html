@@ -244,24 +244,24 @@
         },
 
         decrementQuantity(product_id, quantity, price){
+
           console.log('product_id', product_id);
 
-        
-
+      
           var data = {
             'product_id': product_id,
             'update': true,
             'quantity': parseInt(quantity) - 1
           };
 
-          store.commit('increment', -1);
-          store.commit('changeTotalCost', -parseFloat(price));
-
-          if(parseInt(quantity) == 0 ){
-              removeFromCart(product_id)
+          if(parseInt(quantity) - 1  === 0 ){
+              this.removeFromCart(product_id)
           }
 
           else{
+
+            store.commit('increment', -1);
+            store.commit('changeTotalCost', -parseFloat(price));
 
             fetch('/api/add_to_cart/', {
               method: 'POST',
