@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
 
+def order_confirmation(request):
+    return render(request,'core/email_confirmation.html')
+
+
 class ProductListView(ListView):
     model = Product
     template_name = 'core/frontpage.html'

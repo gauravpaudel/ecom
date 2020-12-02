@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from apps.core.views import ProductListView, SearchListView
+from apps.core.views import ProductListView, SearchListView, order_confirmation
 from apps.store.views import productDetailView, categoryDetail
 from django.conf import settings
 from django.conf.urls.static import static
@@ -18,6 +18,8 @@ urlpatterns = [
     path('test/',tests,name='test'),
 
     path('',ProductListView.as_view(),name='frontpage'),
+
+    path('order_confirmation/',order_confirmation, name='order_confirmation'),
 
     path('accounts/', include('allauth.urls')),
 

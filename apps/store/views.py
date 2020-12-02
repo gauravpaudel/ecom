@@ -16,8 +16,6 @@ def categoryDetail(request,slug):
     return render(request,'store/categories.html',context)
 
 
-
-
 def productDetailView(request,category_slug,slug):
 
     product = get_object_or_404(Product,slug=slug)

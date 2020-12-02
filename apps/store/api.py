@@ -29,8 +29,6 @@ def api_add_to_cart(request):
     return JsonResponse(jsonresponse)
 
 
-#api_remove_from_cart
-
 def api_checkout(request):
 
     cart = Cart(request)
@@ -57,6 +55,7 @@ def api_checkout(request):
     
     return JsonResponse(jsonresponse)
 
+
 def api_remove_from_cart(request):
 
     cart = Cart(request)
@@ -64,7 +63,6 @@ def api_remove_from_cart(request):
     data = json.loads(request.body)
     jsonresponse = {'success':True}
     product_id  = str(data['product_id'])
-
 
     cart = Cart(request)
     cart.remove(product_id)
