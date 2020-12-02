@@ -9,9 +9,6 @@ from apps.order.models import Order, OrderItem
 
 from apps.order.utils import checkout
 
-
-
-
 def api_add_to_cart(request):
     data = json.loads(request.body)
     jsonresponse = {'success':True}
