@@ -6,9 +6,7 @@ from django.db.models import Q
 from apps.order.models import Order
 
 def order_confirmation(request):
-    order = Order.objects.get(pk=1)
-    return render(request,'core/email_confirmation.html',{'order':order})
-
+    return render(request,'core/email_confirmation.html')
 
 class ProductListView(ListView):
     model = Product

@@ -2,6 +2,8 @@ import json
 
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string 
 
 from apps.cart.cart import Cart
 from .models import Product
@@ -50,6 +52,8 @@ def api_checkout(request):
         order.paid = True
         order.paid_amount = cart.get_total_cost()
         order.save()
+        html = render_to_string('core/email_confirmation.html')
+        send_mail('Order Confirmation','Your order has been sent','noreply@mpasal.com',['mail@mpasal.com',order.email],fail_silently=False,html_message=html)
 
         cart.clear()
     
