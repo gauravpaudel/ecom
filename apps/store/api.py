@@ -41,12 +41,12 @@ def api_checkout(request):
     address = data['address']
     zipcode = data['zipcode']
     place = data['place']
-    order_id = checkout(request, first_name, last_name, email, address, place, zipcode)
+    orderid = checkout(request, first_name, last_name, email, address, place, zipcode)
 
     paid = True
 
     if paid:
-        order = Order.objects.get(pk = order_id)
+        order = Order.objects.get(pk = orderid)
         order.paid = True
         order.paid_amount = cart.get_total_cost()
         order.save()

@@ -103,11 +103,7 @@
                 <span>RS.[[product.price]]</span>
                 <span>RS.[[product.total_price]]</span>
               </li>
-          
-          
-              
-              
-
+            
           <li class="list-group-item d-flex justify-content-between">
             <span> <strong>Total (RS)</strong> </span>
             <strong>[[ totalCost ]]</strong>
@@ -130,10 +126,6 @@
       <!--Grid column-->
 
     </div>
-
-
-
-    </div>
     
     <div class="row">
 
@@ -154,8 +146,8 @@
 
                 <!--firstName-->
                 <div class="md-form ">
-                  <input type="text" id="firstName" class="form-control" name="first_name" v-model="first_name">
-                  <label for="firstName" class="">First name</label>
+                  <label>First name</label>
+                  <input type="text" class="form-control" name="first_name" v-model="first_name">
                 </div>
 
               </div>
@@ -224,9 +216,11 @@
             </div>
             
            -->
-          
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block">Proceed to checkout</button>
+        
+            <div class="md-form mb-5">
+              <button class="btn btn-primary" type="submit">checkout</button>
+             
+            </div>
 
           </form>
 
@@ -254,13 +248,14 @@
 {% block scripts %}
 
 <script>
-  var mycartapp = new Vue({
+  var cartapp = new Vue({
     el: '#mycartapp',
     delimiters: ['[[',']]'],
 
     store:store,
 
     data() {
+
       return {
         first_name: '',
         last_name: '',
@@ -436,12 +431,23 @@
               'Content-Type': 'application/json',
               'X-CSRFToken': '{{ csrf_token }}'
             },
-            'credentials': 'same-origin',
-            'body': JSON.stringify(data)
+            credentials: 'same-origin',
+            body: JSON.stringify(data)
           })
-          
+
+          .then((response) =>{
+              console.log('Success')
+              console.log(response)
+
+              window.location.href= '/order_confirmation/';
 
 
+          })
+
+          .catch(function (error){
+              console.log('Eeroor 2')
+              console.log(error)
+          })
 
         },
 

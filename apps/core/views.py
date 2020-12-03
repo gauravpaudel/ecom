@@ -3,9 +3,11 @@ from apps.store.models import Product
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
+from apps.order.models import Order
 
 def order_confirmation(request):
-    return render(request,'core/email_confirmation.html')
+    order = Order.objects.get(pk=1)
+    return render(request,'core/email_confirmation.html',{'order':order})
 
 
 class ProductListView(ListView):

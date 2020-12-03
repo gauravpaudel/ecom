@@ -15,8 +15,6 @@ admin.site.index_title =  'Welcome to the future'
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('test/',tests,name='test'),
-
     path('',ProductListView.as_view(),name='frontpage'),
 
     path('order_confirmation/',order_confirmation, name='order_confirmation'),

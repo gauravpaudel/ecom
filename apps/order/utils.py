@@ -9,7 +9,6 @@ from .models import Order , OrderItem
 
 def checkout(request,first_name, last_name, email, address, place, zipcode):
     
-
     order = Order(first_name = first_name, last_name = last_name, email = email, address = address, place =place, zipcode = zipcode)
     order.save()
 
