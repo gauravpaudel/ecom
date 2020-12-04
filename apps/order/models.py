@@ -15,7 +15,7 @@ class Order(models.Model):
     paid_amount = models.FloatField(blank = True, null = True)
 
     def __str__(self):
-        return '%s' % self.first_name
+        return '%s %s' % (self.first_name, self.last_name)
 
 
 class OrderItem(models.Model):
@@ -23,6 +23,14 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product,related_name='items', on_delete=models.DO_NOTHING)
     price = models.FloatField()
     quantity = models.IntegerField(default = 1)
+    
+    statuss = [
+        ('P','Placed'),
+        ('S','Shipped'),
+        ('D','Delivered')
+    ]
+
+    status = models.CharField(max_length =1, choices = statuss, default='P')
 
 
     def total_price(self):

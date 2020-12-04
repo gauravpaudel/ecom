@@ -1,5 +1,6 @@
 from django.db import models
 from PIL import Image
+from django.urls import reverse
 
 class Category(models.Model):
     title = models.CharField(max_length = 255)
@@ -14,7 +15,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
-    
+
+    def get_absolute_url(self):
+        return reverse('categories_detail',args=[self.slug])
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE, related_name ='products')
@@ -41,3 +44,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('product_detail',args=[self.category.slug,self.slug])

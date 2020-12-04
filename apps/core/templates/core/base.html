@@ -270,7 +270,7 @@
             </li>
             {% for categories in menu_categories %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'categories_detail' categories.slug %}">{{categories}}</a>
+                <a class="nav-link" href="{{ categories.get_absolute_url }}">{{categories}}</a>
               </li>
             {% endfor %}
 
