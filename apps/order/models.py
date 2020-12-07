@@ -14,6 +14,8 @@ class Order(models.Model):
     paid = models.BooleanField(default = False)
     paid_amount = models.FloatField(blank = True, null = True)
 
+    used_coupon = models.CharField(max_length = 50, blank = True, null = True)
+
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)
 

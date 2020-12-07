@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from apps.store.api import api_add_to_cart, api_checkout, api_remove_from_cart
 from apps.cart.views import cart_detail,tests
-
+from apps.coupons.api import api_can_use
 
 admin.site.site_header = 'mPasal'
 admin.site.site_title = 'mPasal Admin Portal'
@@ -26,6 +26,8 @@ urlpatterns = [
     path('search/',SearchListView.as_view(),name='search'),
 
     #api cart
+
+    path('api/can_use/',api_can_use,name='api_can_use'),
 
     path('api/add_to_cart/',api_add_to_cart,name='api_add_to_cart'),
 

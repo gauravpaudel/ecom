@@ -68,4 +68,7 @@ class Cart(object):
         return sum(int(item['quantity']) for item in self.cart.values())
 
     def get_total_cost(self):
+        try:
             return sum(float(item['total_price']) for item in self)
+        except:
+            return 0

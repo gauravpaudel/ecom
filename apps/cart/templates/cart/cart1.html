@@ -93,8 +93,6 @@
             <span> <strong>Total Price</strong> </span>
           </li>
 
-
-
               <li  v-for="product in products" class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
                   <h6 class="my-0"> <strong>[[product.title]]</strong></h6>
@@ -108,18 +106,23 @@
             <span> <strong>Total (RS)</strong> </span>
             <strong>[[ totalCost ]]</strong>
           </li>
+
+          <li v-if="coupon_value" class="list-group-item d-flex justify-content-between">
+            <span> <strong>Total cost with coupon(RS)</strong> </span>
+            <strong>[[ totalCostWithCoupon ]]</strong>
+          </li>
         </ul>
         <!-- Cart -->
 
         <!-- Promo code -->
-        <form class="card p-2">
+        <div class="card p-2">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input v-model="coupon_code" type="text" class="form-control" placeholder="Promo code" aria-label="Promo">
             <div class="input-group-append">
-              <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Redeem</button>
+              <button  @click="applyCoupon()" class="btn btn-secondary btn-md waves-effect m-0">Redeem</button>
             </div>
           </div>
-        </form>
+        </div>
         <!-- Promo code -->
 
       </div>
@@ -268,7 +271,9 @@
         address: '',
         place: '',
         zipcode: '',
-        products: [{{productsstring|safe}}]
+        products: [{{productsstring|safe}}],
+        coupon_value: 0,
+        coupon_code: ''
       }
     },
 
@@ -279,9 +284,41 @@
 
         totalCost: function(){
             return store.state.totalCost
-                  }
-                },
+                  },
+
+        totalCostWithCoupon: function(){
+          if (this.coupon_value > 0){
+            return store.state.totalCost * (parseInt(this.coupon_value) / 100);
+        }
+          else{
+            return store.state.totalCost;
+          }
+                }
+    },
     methods: {
+
+        applyCoupon(){
+          if (this.coupon_code != ''){
+            fetch('/api/can_use?coupon_code=' + this.coupon_code, {
+              method: 'GET'
+            })
+
+            .then((response) => {
+              return response.json();
+
+            })
+
+            .then((data) => {
+              if(data.amount){
+                this.coupon_value = parseInt(data.amount);
+              }
+              else{
+                this.coupon_value = 0
+              }
+            });
+          }
+        },
+
         incrementQuantity(product_id, quantity, price){
           console.log('product_id',product_id);
 
