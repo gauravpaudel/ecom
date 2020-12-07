@@ -8,6 +8,7 @@ from apps.order.models import Order
 def order_confirmation(request):
     return render(request,'core/email_confirmation.html')
 
+
 class ProductListView(ListView):
     model = Product
     template_name = 'core/frontpage.html'

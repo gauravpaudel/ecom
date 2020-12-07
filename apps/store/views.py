@@ -12,7 +12,6 @@ def categoryDetail(request,slug):
         'products': products
     }
 
-
     return render(request,'store/categories.html',context)
 
 

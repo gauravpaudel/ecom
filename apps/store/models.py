@@ -1,6 +1,7 @@
 from django.db import models
 from PIL import Image
 from django.urls import reverse
+from django.utils.text import slugify
 
 class Category(models.Model):
     title = models.CharField(max_length = 255)
@@ -18,6 +19,13 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('categories_detail',args=[self.slug])
+
+
+    def save(self,*args,**kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        return super().save(*args,**kwargs)
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE, related_name ='products')
@@ -47,3 +55,8 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail',args=[self.category.slug,self.slug])
+
+    def save(self,*args,**kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args,**kwargs)

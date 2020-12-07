@@ -216,7 +216,12 @@
             </div>
             
            -->
-        
+           {% if not request.user.is_authenticated %}
+                    <p>Continue as guest or <a href="{% url 'account_login' %}">log in</a> / <a href="{% url 'account_signup' %}">sign up</a>.</p>
+
+                    <hr>
+                {% endif %}
+
             <div class="md-form mb-5">
               <button class="btn btn-primary" type="submit">checkout</button>
              

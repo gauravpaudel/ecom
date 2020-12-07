@@ -24,6 +24,9 @@ ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = 'frontpage'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'frontpage'
 
+ACCOUNT_EMAIL_REQUIRED  = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # apps
     'apps.core',
     'apps.store',
@@ -56,9 +60,23 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    
 ]
 
 SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
