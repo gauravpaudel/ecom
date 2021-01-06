@@ -19,4 +19,4 @@ def productDetailView(request,category_slug,slug):
 
     product = get_object_or_404(Product,slug=slug)
 
-    return render(request,'store/detail.html',{'product':product})
+    return render(request,'store/detail1.html',{'product':product})

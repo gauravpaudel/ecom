@@ -17,7 +17,7 @@ def cart_detail(request):
         'productsstring': productsstring
     }
 
-    return render(request,'cart/cart1.html',context)
+    return render(request,'cart/tcart.html',context)
 
 
 def tests(request):

@@ -11,7 +11,7 @@ def order_confirmation(request):
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'core/frontpage.html'
+    template_name = 'core/frontpage1.html'
     context_object_name = 'products'
     paginate_by = 8
     queryset = Product.objects.filter(is_featured =True)
