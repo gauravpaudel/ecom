@@ -9,7 +9,9 @@ class Category(models.Model):
     ordering = models.IntegerField(default = 0)
     image =  models.ImageField(upload_to='uploads/category',null = True, blank = True)
     is_featured = models.BooleanField(default = False)
+    description = models.TextField(null=True, blank=True)
     
+
     class Meta:
         ordering = ('ordering',)
         verbose_name_plural = 'categories'

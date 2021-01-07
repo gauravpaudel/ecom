@@ -1,0 +1,34 @@
+{% extends 'core/base1.html' %}
+{% load static %}
+    {% block content %}
+
+    <div class="rounded-3xl object-cover m-1 md:m-8 shadow-2xl overflow-hidden">
+
+        <!-- hero image-->   
+            <div class="w-screen h-screen shadow-2xl overflow-hidden relative">
+                <img src="{% static 'img/electronic.jpg' %}" class="absolute inset-0 h-full w-full object-cover">
+                <div class="absolute inset-0 bg-gray-900 bg-opacity-75"></div>
+                <div class="flex flex-col h-full items-center justify-center relative ">
+                    <div class="text-gray-50 text-center">
+                        <h1 class="text-3xl uppercase tracking-wider mb-20">{{category}}</h1>
+                        <p class="tracking-wide mx-5 md:mx-52">{{category.description}}</p>
+                    </div>
+                </div>
+            </div>
+            
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-8 my-12">
+
+                    {% for product in products %}
+                        <div class="flex flex-col items-center m-2">
+                            <a href="{% url 'product_detail' product.category.slug product.slug %}"> <img src="{{product.image.url}}" class="h-52 w-72 md:h-96 md:w-80"></a>
+                            <h2 class="font-semibold py-2">{{product.title}}</h2>
+                            <h2>{{product.description}}</h2>
+                            <h2 class="mt-4 text-md">RS. {{ product.price }}</h2>
+                            <h2 class="text-md italic">{{ product.tag }}</h2>
+                        </div>        
+                    {% endfor %}
+
+                </div>
+        </div>
+        
+    {% endblock %}

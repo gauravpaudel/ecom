@@ -12,7 +12,7 @@ def categoryDetail(request,slug):
         'products': products
     }
 
-    return render(request,'store/categories.html',context)
+    return render(request,'store/cat.html',context)
 
 
 def productDetailView(request,category_slug,slug):
