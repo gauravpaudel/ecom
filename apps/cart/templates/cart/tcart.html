@@ -20,7 +20,7 @@
                     <tbody>
                         <tr v-for="product in products">
                             <td><img :src="[[product.image]]" class="h-8 w-8 md:h-24 md:w-24"></td>
-                            <td>[[product.title]]</td>
+                            <td class="capitalize font-semibold">[[product.title]]</td>
                             <td>[[product.price]]</td>
                             <td class="text-center">
                               <button @click="decrementQuantity(product.id,product.quantity,product.price)" class="md:mr-3 focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
@@ -41,8 +41,8 @@
             <div class="md:flex justify-between items-center w-full">
                 <div class="mt-4 text-center">
                     <h2 class="text-lg font-bold mb-4">Coupon</h2>
-                    <input v-model="coupon_code" type="text" placeholder="eg:year2021" class="py-2 px-4 border border-gray-600 bg-gray-200 text-gray-900 focus:bg-gray-50 focus:border-gray-800focus:outline-none">
-                    <button @click="applyCoupon()" class="border border-gray-800 shadow-xl rounded-sm py-2 px-4 bg-gray-50 tracking-wider text-gray-800 ml-4 hover:bg-gray-900 hover:text-gray-50 transition ease-out duration-500 focus:outline-none">Apply</button>
+                    <input v-model="coupon_code" type="text" placeholder="eg:year2021" class="py-2 px-4 border border-gray-600 bg-gray-200 text-gray-900 focus:bg-gray-50 focus:border-gray-800 focus:outline-none">
+                    <button @click="applyCoupon()" class="border border-gray-800 shadow-xl rounded-sm py-2 px-4 bg-gray-50 tracking-wider text-gray-800 ml-4 hover:bg-gray-900 hover:text-gray-50 transition ease-out duration-300 focus:outline-none">Apply</button>
                 </div>
                 <div class="mt-8 text-center">
                     <h2 class="mb-4">Total: RS [[ totalCost ]]</h2>
@@ -50,7 +50,7 @@
                     
                 </div>
                 <div class="mt-8 text-center">
-                    <button class="rounded-sm border border-gray-800 py-3 px-8 shadow-xl tracking-wider text-xl bg-gray-50 text-gray-900 hover:bg-gray-900 hover:text-gray-50 transition ease-out duration-500 focus:outline-none">Check Out</button>
+                    <button class="rounded-sm border border-gray-800 py-3 px-8 shadow-xl tracking-wider text-xl hover:bg-gray-50 hover:text-gray-900 bg-gray-900 text-gray-50 transition ease-out duration-300 focus:outline-none">Check Out</button>
                 </div>
             </div>
         

@@ -15,7 +15,7 @@
 
         <div class="flex items-center justify-end bg-gray-900 text-gray-50 p-1 font-semibold w-full">
             {% if user.is_authenticated %}
-            <span class="mr-10">Hi, {{ request.user }}</span>
+            <span class="mr-10 capitalize">Hi, {{ request.user }}</span>
                 <a href="{% url 'account_logout' %}" class="md:mr-28 hover:text-pink-300">Logout</a>
             {% else %}
                 <a href="{% url 'account_login' %}" class="mr-4 hover:text-yellow-300">Login</a>
@@ -25,9 +25,10 @@
         </div>
     
 
-    <nav class="flex flex-wrap items-center text-gray-700 p-4">
+    <nav class="flex flex-wrap items-center text-gray-700 px-4 py-2 relative">
+        <div class="absolute inset-0 shadow-lg opacity-50 rounded-md"></div>
         <div class="flex-1 flex justify-between items-center">
-            <a href="/"><img src="{% static 'img/logo.png' %}" class="h-16 w-32 md:ml-32"></a>
+            <a href="{% url 'frontpage' %}" class="z-0"><img src="{% static 'img/logo.png' %}" class="h-14 w-32 md:ml-32" /></a>
             <label for="menu-toggle" class="cursor-pointer lg:hidden block">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 13a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
             </label>
