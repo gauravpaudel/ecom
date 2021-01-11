@@ -27,3 +27,9 @@ class SearchListView(ListView):
         #to use filter in foreign key use string representation of that model 
         object_list = Product.objects.filter(Q(title__icontains=query) | Q(category__title__icontains = query))
         return object_list
+    
+    def get_context_data(self,**kwargs):
+        query = self.request.GET.get('q')
+        context = super().get_context_data(**kwargs)
+        context['q'] = query
+        return context

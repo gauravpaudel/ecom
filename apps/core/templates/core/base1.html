@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-raleway">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,6 @@
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
     
-
     <!-- ------ authenticate ----->
 
         <div class="flex items-center justify-end bg-gray-900 text-gray-50 p-1 font-semibold w-full">
@@ -25,7 +24,7 @@
         </div>
     
 
-    <nav class="flex flex-wrap items-center text-gray-700 px-4 py-2 relative">
+    <header class="flex flex-wrap items-center text-gray-700 px-4 py-2 relative">
         <div class="absolute inset-0 shadow-lg opacity-50 rounded-md"></div>
         <div class="flex-1 flex justify-between items-center">
             <a href="{% url 'frontpage' %}" class="z-0"><img src="{% static 'img/logo.png' %}" class="h-14 w-32 md:ml-32" /></a>
@@ -33,6 +32,15 @@
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 13a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
             </label>
             <input type="checkbox" class="hidden" id="menu-toggle" />
+
+            <div class="z-0">
+                <form class="" method="GET" action="{% url 'search' %}">
+                
+                    <div class="my-0">
+                      <input class="mr-sm-2" type="text" placeholder="Search" name="q" aria-label="Search">
+                    </div>
+                  </form>
+            </div>
 
             <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="navbarapp">
                 <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
@@ -43,7 +51,7 @@
                 </ul>  
             </div>
         </div>
-    </nav>
+    </header>
 
     {% block content %}
     

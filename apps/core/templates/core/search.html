@@ -1,89 +1,19 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base1.html' %}
 {% block content %}
-
-  {% for product in products %}
-
-    <div class="col-lg-3 col-md-6 mb-4">
-
-      <!--Card-->
-      <div class="card">
-
-        <!--Card image-->
-        <div class="view overlay">
-          <img src="{{ product.image.url }}" class="card-img-top"
-            alt="">
-          <a href="{% url 'product_detail' product.category.slug product.slug %}">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-        <!--Card image-->
-
-        <!--Card content-->
-        <div class="card-body text-center">
-          <!--Category & Title-->
-          <a href="{% url 'product_detail' product.category.slug product.slug %}" class="grey-text">
-            <h5>{{product.category}}</h5>
-          </a>
-          <h5>
-            <strong>
-              <a href="{% url 'product_detail' product.category.slug product.slug %}" class="dark-grey-text"> {{product.title}}
-                <span class="badge badge-pill danger-color">{{product.tag}}</span>
-              </a>
-            </strong>
-          </h5>
-
-          <h4 class="font-weight-bold blue-text">
-            <strong>RS. {{product.price}}</strong>
-          </h4>
-
-        </div>
-        <!--Card content-->
-
-      </div>
-      <!--Card-->
-
+    <div class="bg-gray-100 text-gray-900 text-center mt-20 mx-8 md:mx-32 pt-10 pb-20 rounded-xl shadow-sm">
+        <span>We found {{products.count}} results for:</span>
+        <h2 class="text-4xl font-semibold mt-8 capitalize">"{{q}}"</h2>
     </div>
-  {% endfor %}
-<!-- closing tags for base.html -->
-  </div>
-</section>
 
-  <!-- Django Pagination -->
-
-  <nav class="d-flex justify-content-center wow fadeIn">
-    <ul class="pagination pg-blue">
-
-      {% if page_obj.has_previous%}
-
-        <!--Arrow left-->
-        <li class="page-item">
-          <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      
-      {% endif %}
-
-      <li class="page-item active">
-        <a class="page-link" href="#">{{page_obj.number}}
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-
-      {% if page_obj.has_next %}
-
-      <li class="page-item">
-        <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-      
-      {% endif %}
-
-    </ul>
-  </nav>
-  <!--Pagination-->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-12 py-8 ml-2 md:ml-6">
+        {% for product in products %}
+            <div class="flex flex-col m-4 md:mt-8 md:mx-20 hover:shadow-2xl md:w-96 shadow-lg overflow-hidden">
+                <a href="{{ product.get_absolute_url }}"> <img src="{{ product.image.url }}" class="h-52 w-72 md:h-96 md:w-96"></a>
+                <div class="border-b border-gray-300 mx-8 pt-3 pb-2"><h2 class="font-bold py-2 text-xl capitalize ">{{product.title}}</h2></div>
+                <h2 class="pt-2 text-sm mx-8 tracking-wider">{{product.price}}</h2>
+                <h2 class="text-md italic px-8">{{product.tag}}</h2>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

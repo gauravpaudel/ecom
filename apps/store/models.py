@@ -31,10 +31,12 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE, related_name ='products')
+    parent = models.ForeignKey('self', related_name='variants', on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length = 255)
     slug = models.SlugField(max_length=255)
     old_price = models.FloatField()
     price = models.FloatField()
+    num_available = models.IntegerField(default=1)
     tags = [
         ('new','new'),
         ('best_seller','best seller'),
@@ -62,3 +64,10 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         return super().save(*args,**kwargs)
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images',on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='uploads',blank=True,null=True)
+
+    def __str__(self):
+        return self.product.title
