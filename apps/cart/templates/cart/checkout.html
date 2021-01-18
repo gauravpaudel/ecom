@@ -1,0 +1,208 @@
+{% extends 'core/base1.html' %}
+{% block content %}
+
+
+    <div class="lg:flex mt-12" id="mycheckapp">
+        <!-- left side -------->
+            <div class="w-full lg:w-1/2 ml-6 lg:ml-32 text-gray-600 mb-4">
+                <form @submit.prevent="submitForm">
+                    <!-- top navigation -->
+                    <div class="flex items-center space-x-1 text-sm text-gray-500 tracking-wide">
+                        <a href="{% url 'cart_detail' %}">Cart</a>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-gray-700">Information</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Shipping</span>
+                    </div>
+
+                    <!-- buttons for payment gateway-->
+                    <div class="mt-4">
+                        <button class="border-2 border-gray-800 p-2 px-6 bg-gray-800 text-gray-50 rounded-sm shadow-xl hover:bg-gray-50 hover:text-gray-800">Khalti</button>
+                        <button class="border-2 border-gray-800 p-2 px-6 bg-gray-800 text-gray-50 rounded-sm shadow-xl hover:bg-gray-50 hover:text-gray-800">E-Sewa</button>
+                    </div>
+
+                    <!-- Login credentials-->
+                    <div class="mt-8">
+                        <div class="lg:flex items-center justify-between font-semibold">
+                            <h2 class="text-lg">Contact information</h2>
+                            {% if not request.user.is_authenticated %}    
+                                <h2 class="text-gray-400">Already have an account? <a href="{% url 'account_login' %}" class="text-gray-700 underline">Log in</a></h2>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="pt-4">
+                            <label for="city" class="">Email</label>
+                            <input v-model="email" type="text" name="city" placeholder="eg: example@example.com" class="block w-5/6 lg:w-full focus:ring-0 border border-gray-300 focus:border-gray-400">
+                        </div>
+                    </div>
+
+                    <!-- SHipping adress forms-->
+                    <div class="mt-8">
+                        <h2 class="font-semibold text-lg mb-4">Shipping address</h2>
+                        <div class="lg:flex items-center lg:space-x-3">
+                            <div class="">
+                                <label for="first_name">First name</label>
+                                <input v-model="first_name" type="text" name="first_name" class="block w-5/6 lg:w-full focus:ring-0 border border-gray-300 focus:border-gray-400">
+                            </div>
+                            <div>
+                                <label for="last_name">Last name</label>
+                                <input v-model="last_name" type="text" name="last_name" class="block w-5/6 lg:w-full focus:ring-0 border border-gray-300 focus:border-gray-400">
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <label for="city" class="">City</label>
+                            <input v-model="city" type="text" name="city" placeholder="" class="block w-5/6 lg:w-full focus:ring-0 border border-gray-300 focus:border-gray-400">
+                        </div>
+                        
+                        <div class="pt-2">
+                            <label for="address" class="">Address</label>
+                            <input v-model="address" type="text" name="address" placeholder="eg: Bishalnagar" class="block w-5/6 lg:w-full focus:ring-0 border border-gray-300 focus:border-gray-400">
+                        </div>
+
+                        
+
+                        <div class="pt-2">
+                            <label for="phone" class="">Phone</label>
+                            <input v-model="phone" type="text" name="phone" class="block w-5/6 lg:w-full focus:ring-0 border border-gray-300 focus:border-gray-400">
+                        </div>
+
+                    </div>
+
+                    <!-- end navigation -->
+                    <div class="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between mt-8 font-semibold tracking-wide">
+                    <a href="" class="flex items-center justify-center mt-4 lg:mt-0 space-x-2 hover:text-gray-300 text-sm focus:outline-none"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="hover:text-gray-600">Return to cart</span></a>
+                    <button class="w-5/6 lg:w-3/6 border-2 border-gray-800 py-5 lg:py-3 px-6  bg-gray-800 text-gray-50 rounded-sm shadow-xl hover:bg-gray-50 hover:text-gray-800 font-bold text-sm tracking-wider transition ease-out duration-300 focus:outline-none">CONTINUE TO SHIPPING</button>
+                    </div>  
+                </form>
+            </div>
+        
+
+            <!-- RIGHT SIDE--------->
+            <div class="w-full lg:w-1/2 bg-gray-100 lg:ml-14 lg:mr-28 lg:px-20 px-4 py-10 rounded-md shadow-sm text-gray-800">
+                <!-- coupon -->
+                <div class="flex items-center space-x-3">
+                    <input v-model="coupon_code" type="text" placeholder="Gift card" class="w-full block focus:ring-0 border border-gray-300 focus:border-gray-400">
+                    <button @click="applyCoupon()" type="submit" class=" border-2 border-gray-800 bg-gray-800 text-gray-50 py-3 px-5 hover:text-gray-800 hover:bg-gray-50 transition ease-out duration-300 focus:outline-none">APPLY</button>
+                </div>
+
+                <!-- total amount-->
+                <div class="flex items-center justify-between border-t border-gray-300 mt-8 py-4">
+                    <h2 class="font-semibold">Subtotal</h2>
+                    <h2>RS. [[ totalCost ]]</h2>
+                </div>
+                <div class="flex items-center justify-between mt-4 ">
+                    <h2>Coupon discount(%)</h2>
+                    <h2>[[ coupon_value ]]</h2>
+                </div>
+                <div class="flex items-center justify-between border-t border-gray-300 mt-8 py-4 font-semibold">
+                    <h2 class="">Total</h2>
+                    <h2 class="">RS. [[ totalCostWithCoupon ]]</h2>
+                </div>
+            </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    var checkoutapp = new Vue({
+        el: '#mycheckapp',
+        delimiters: ['[[',']]'],
+
+        store:store,
+
+        data(){
+            return {
+               first_name: '',
+               last_name: '',
+               email: '',
+               city: '',
+               address: '',
+               phone: '',
+               coupon_value: 0,
+               coupon_code: ''
+            }
+        },
+    
+        computed: {
+            numItems: function() {
+                return store.state.numItems
+            },
+
+            totalCost: function() {
+                return store.state.totalCost
+            },
+
+            totalCostWithCoupon: function(){
+                if (this.coupon_value > 0){
+                    return store.state.totalCost * (parseInt(this.coupon_value) / 100);
+                }
+                else{
+                    return store.state.totalCost
+                }
+            }
+        },
+
+        methods: {
+            applyCoupon(){
+                if(this.coupon_code != ''){
+                    fetch('/api/can_use?coupon_code=' + this.coupon_code, {
+                        method: 'GET'
+                    })
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if(data.amount){
+                            this.coupon_value = parseInt(data.amount);
+                        }
+                    })
+
+                }
+            
+            },
+            submitForm(){
+
+                var data = {
+                    'first_name': this.first_name,
+                    'last_name': this.last_name,
+                    'email': this.email,
+                    'city': this.city,
+                    'address': this.address,
+                    'phone': this.phone
+                };
+                fetch('/api/checkout/',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify(data)
+                })
+
+                .then((response) => {
+                    console.log('Success')
+                    console.log(response)
+                })
+
+                .catch(function (error){
+                    console.log('Error 2')
+                    console.log(error)
+                })
+
+            }
+        }
+
+    })
+
+
+
+</script>
+
+
+{% endblock %}

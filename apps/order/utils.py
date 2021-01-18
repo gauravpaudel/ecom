@@ -7,9 +7,9 @@ from apps.cart.cart import Cart
 from .models import Order , OrderItem
 
 
-def checkout(request,first_name, last_name, email, address, place, zipcode):
+def checkout(request,first_name, last_name, email, city, address, phone):
     
-    order = Order(first_name = first_name, last_name = last_name, email = email, address = address, place =place, zipcode = zipcode)
+    order = Order(first_name = first_name, last_name = last_name, email = email, city =city, address = address,phone=phone)
     order.save()
 
     cart = Cart(request)

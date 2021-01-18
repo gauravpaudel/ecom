@@ -40,10 +40,10 @@ def api_checkout(request):
     first_name = data['first_name']
     last_name = data['last_name']
     email = data['email']
-    address = data['address']
-    zipcode = data['zipcode']
-    place = data['place']
-    orderid = checkout(request, first_name, last_name, email, address, place, zipcode)
+    city = data['city']
+    address = data['address']   
+    phone = data['phone']
+    orderid = checkout(request, first_name, last_name, email, city, address, phone)
 
     paid = True
 
