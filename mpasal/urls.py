@@ -8,6 +8,7 @@ from apps.store.api import api_add_to_cart, api_checkout, api_remove_from_cart
 from apps.cart.views import cart_detail,checkout
 from apps.coupons.api import api_can_use
 
+
 admin.site.site_header = 'mPasal'
 admin.site.site_title = 'mPasal Admin Portal'
 admin.site.index_title =  'Welcome to the future'
@@ -26,6 +27,8 @@ urlpatterns = [
     path('search/',SearchListView.as_view(),name='search'),
 
     path('checkout/',checkout,name='checkout'),
+
+    path('profile/',include('apps.profiles.urls',namespace='profile')),
 
 
     #api cart

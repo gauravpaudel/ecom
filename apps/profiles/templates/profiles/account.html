@@ -1,0 +1,40 @@
+{% extends 'core/base1.html' %}
+{% block content %}
+
+    <div class="bg-gray-200 w-full h-full text-gray-700">
+        <div class="w-full text-center pt-32 tracking-widest">
+            <h2 class="font-bold text-2xl">MY ACCOUNT</h2>
+            <h3 class="underline text-sm mt-4 hover:text-gray-900"><a href="#">LOGOUT</a></h3>
+        </div>
+        <div class="flex justify-between">
+            <div class="px-32 py-8"> 
+                {% if orders %}
+                    {% for order in orders %}
+                    <h2 class="">{{order.product.title}}</h2>
+                    {% endfor %}
+                
+                {% else %}
+                    <h2 class="">You haven't placed any order yet</h2>
+                {% endif %}
+               
+            </div>
+            <!-- address and details-->
+            <div class="px-16 bg-gray-50 mr-20 py-16 shadow-2xl">
+                <h2 class="font-semibold tracking-widest text-xl">{{profile.first_name}} {{profile.last_name}}</h2>
+                <h2 class="mt-10 uppercase text-sm">{{request.user.email}}</h2>
+                <h2 class="mt-10 uppercase text-sm">{{profile.phone}}</h2>
+                {% if profile.city == None %}
+                    <h2 class="mt-10 uppercase text-sm">You haven't added an address yet.</h2>
+                    <h2 class="underline text-xs hover:text-gray-900"><a href="{% url 'profile:account_edit' profile.id %}">ADD AN ADDRESS</a></h2>
+                {% else %}
+                    <h2 class="mt-10 uppercase text-sm">{{profile.city}}</h2>
+                    <h2 class="mt-4 uppercase text-sm">{{profile.place}}</h2>
+
+                    <h2 class="underline text-xs hover:text-gray-900 mt-4"><a href="{% url 'profile:account_edit' profile.id %}">CHANGE</a></h2>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
