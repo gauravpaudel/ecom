@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
-    
     <!-- ------ authenticate ----->
 
         <div class="flex items-center justify-end bg-gray-900 text-gray-50 p-1 font-semibold w-full">
@@ -24,30 +23,41 @@
         </div>
     
 
-    <header class="flex flex-wrap items-center text-gray-700 px-4 py-2 relative">
-        <div class="absolute inset-0 shadow-lg opacity-50 rounded-md"></div>
-        <div class="flex-1 flex justify-between items-center">
-            <a href="{% url 'frontpage' %}" class="z-0"><img src="{% static 'img/logo.png' %}" class="h-14 w-32 md:ml-32" /></a>
-            <label for="menu-toggle" class="cursor-pointer lg:hidden block">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 13a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-            </label>
-            <input type="checkbox" class="hidden" id="menu-toggle" />
+    <header class="lg:flex items-center text-gray-700 px-4 py-2 sticky top-0 z-10 bg-gray-50 shadow-md">
+        <div class="lg:flex lg:justify-between lg:items-center w-full" id="navbarapp">
+            <div class="flex justify-between items-center w-full">
+                <div>
+                    <a href="{% url 'frontpage' %}" class="z-0"><img src="{% static 'img/logo.png' %}" class="h-14 w-32 lg:ml-32" /></a>
+                </div>
 
-            <div class="z-0">
-                <form class="" method="GET" action="{% url 'search' %}">
-                
-                    <div class="my-0">
-                      <input class="mr-sm-2" type="text" placeholder="Search" name="q" aria-label="Search">
-                    </div>
-                  </form>
+                <div class="block lg:hidden">
+                    <button @click="isOpen = !isOpen" type="button" class="mr-6 hover:text-gray-700 focus:outline-none focus:text-gray-700" aria-label="toggle menu">
+                        <svg class="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path v-if="!isOpen" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd">
+                          </path>
+                          <path v-if="isOpen" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd">
+                          </path>
+                        </svg>
+                      </button>
+                  </div>
             </div>
-
-            <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="navbarapp">
-                <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
-                    <li class="mr-8 rounded-md border-b border-gray-50 hover:text-gray-900 hover:border-gray-900 transition ease-in duration-150 transform hover:translate-y-1"><a href="#">SHOP</a></li>
-                    <li class="mr-8 rounded-md border-b border-gray-50 hover:text-gray-900 hover:border-gray-900 transition ease-in duration-150 transform hover:translate-y-1"><a href="#">CONTACT</a></li>
-                    <li class="mr-8 rounded-md border-b border-gray-50 hover:text-gray-900 hover:border-gray-900 transition ease-in duration-150 transform hover:translate-y-1"><a href="{% url 'profile:account' %}">PROFILE</a></li>
-                    <li class="mr-8 rounded-md border-b border-gray-50 hover:text-gray-900 hover:border-gray-900 transition ease-in duration-150 transform hover:translate-y-1"><a href="{% url 'cart_detail'%}" class="">CART([[ numItems ]])</a></li>
+            
+            <div :class="isOpen? 'block':'hidden'" class="lg:flex lg:items-center lg:w-auto w-full font-semibold pt-6 lg:pt-0">
+                <ul class="lg:flex">
+                    <li class="block lg:mr-40">
+                        <div class="z-10">
+                            <form class="" method="GET" action="{% url 'search' %}">
+                            
+                                <div class="my-0">
+                                  <input class="mr-sm-2" type="text" placeholder="Search" name="q" aria-label="Search">
+                                </div>
+                              </form>
+                        </div>
+                    </li>
+                    <li class="block mr-8 pt-4 pb-1 lg:py-0 rounded-md border-b border-gray-50 lg:hover:text-gray-900 hover:border-gray-900 transition ease-in duration-150 transform hover:translate-y-1"><a href="#">CONTACT</a></li>
+                    <li class="block mr-8 py-1 lg:py-0  rounded-md border-b border-gray-50 hover:text-gray-900 hover:border-gray-900 transition ease-in duration-150 transform hover:translate-y-1"><a href="#">SHOP</a></li>
+                    <li class="block mr-8 py-1 lg:py-0 rounded-md border-b border-gray-50 hover:text-gray-900 hover:border-gray-900 transition ease-in duration-150 transform hover:translate-y-1"><a href="{% url 'profile:account' %}">PROFILE</a></li>
+                    <li class="block mr-8 py-1 lg:py-0  rounded-md border-b border-gray-50 hover:text-gray-900 hover:border-gray-900 transition ease-in duration-150 transform hover:translate-y-1"><a href="{% url 'cart_detail'%}" class="">CART([[ numItems ]])</a></li>
                 </ul>  
             </div>
         </div>
@@ -127,6 +137,18 @@
           el: '#navbarapp',
           delimiters: ['[[',']]'],
           store: store,
+          
+          data() {
+              return{
+                isOpen: false
+              }
+          },
+
+          methods: {
+            toggle(){
+                this.isOpen = !this.isOpen
+            }
+          },
     
           computed: {
             numItems: function () {

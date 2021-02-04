@@ -13,11 +13,9 @@ class Profile(models.Model):
     phone = models.CharField(max_length = 20, null=True, blank=True)
     place = models.CharField(max_length = 200, null=True, blank=True)
 
-
     def __str__(self):
         return self.user.username
-
-
+        
 class ShopList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shopping_list')
     items = models.ForeignKey(Product, on_delete=models.CASCADE)

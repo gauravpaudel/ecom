@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
 from apps.store.models import Product
-
 
 class Order(models.Model):
     first_name = models.CharField(max_length = 100)
@@ -21,7 +19,6 @@ class Order(models.Model):
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)
 
-
 class OrderItem(models.Model):
     user = models.ForeignKey(User, related_name='orders', on_delete=models.CASCADE, blank=True, null=True)
     order = models.ForeignKey(Order, related_name='items', on_delete = models.CASCADE)
@@ -34,9 +31,7 @@ class OrderItem(models.Model):
         ('S','Shipped'),
         ('D','Delivered')
     ]
-
     status = models.CharField(max_length =1, choices = statuss, default='P')
-
 
     def total_price(self):
         return self.price * self.quantity

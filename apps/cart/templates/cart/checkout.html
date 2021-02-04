@@ -117,12 +117,12 @@
 
         data(){
             return {
-               first_name: '',
-               last_name: '',
-               email: '',
-               city: '',
-               address: '',
-               phone: '',
+               first_name: '{{user.profile.first_name}}',
+               last_name: '{{user.profile.last_name}}',
+               email: '{{user.email}}',
+               city: '{{user.profile.city}}',
+               address: '{{user.profile.place}}',
+               phone: '{{user.profile.phone}}',
                coupon_value: 0,
                coupon_code: ''
             }
