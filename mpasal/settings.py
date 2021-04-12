@@ -15,7 +15,10 @@ SECRET_KEY = 'g#u#09im7ia7fw8%j^lks$-l5dl&k=jm(+u7&lb4=!xl_3pcez'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost'
+]
 
 
 # Application definition
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
@@ -57,7 +61,7 @@ INSTALLED_APPS = [
     'apps.profiles',
 
     # all auth
-    'django.contrib.sites',
+    
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -108,6 +112,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'mpasal.wsgi.application'
 

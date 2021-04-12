@@ -30,7 +30,6 @@ urlpatterns = [
 
     path('profile/',include('apps.profiles.urls',namespace='profile')),
 
-
     #api cart
 
     path('api/can_use/',api_can_use,name='api_can_use'),
@@ -41,15 +40,10 @@ urlpatterns = [
 
     path('api/remove_from_cart/', api_remove_from_cart, name='api_remove_from_cart'),
 
-
 #cat
     path('<slug:slug>/',categoryDetail,name='categories_detail'),
     
     path('<slug:category_slug>/<slug:slug>/',productDetailView,name='product_detail'),
-
-
-    
-
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
