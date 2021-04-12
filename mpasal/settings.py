@@ -23,11 +23,11 @@ ALLOWED_HOSTS = [
 
 # Application definition
 
-#authentication 
+# authentication
 LOGIN_REDIRECT_URL = 'frontpage'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'frontpage'
 
-ACCOUNT_EMAIL_REQUIRED  = True
+ACCOUNT_EMAIL_REQUIRED = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = [
@@ -36,10 +36,9 @@ AUTHENTICATION_BACKENDS = [
 
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
-    
 ]
 
-#Session for cart function for guest user 
+# Session for cart function for guest user 
 SESSION_COOKIE_AGE = 86400
 CART_SESSION_ID = 'cart'
 
@@ -61,12 +60,11 @@ INSTALLED_APPS = [
     'apps.profiles',
 
     # all auth
-    
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    
+    'allauth.socialaccount.providers.google', 
 ]
 
 SITE_ID = 1
@@ -161,17 +159,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-#static
+# static
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-#media or images
+# media or images
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#email
+# email
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '1025'
